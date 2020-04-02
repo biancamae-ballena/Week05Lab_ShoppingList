@@ -17,6 +17,7 @@
             <input type="hidden" name="action" value="register" />
             Username: <input type="text" name="fldUsername" />
             <input type="submit" name="btnSubmit" value="Register name" />
+            ${invalid}
         </form>
     </body>
 </html>
