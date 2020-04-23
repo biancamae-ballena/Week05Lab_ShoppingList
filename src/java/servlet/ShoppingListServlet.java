@@ -6,7 +6,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -58,12 +57,6 @@ public class ShoppingListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        HttpSession session = request.getSession();
-//
-//        String username = request.getParameter("username");
-//
-//        session.setAttribute("username", username);
-//        getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
         if (action != null && !action.equals("")) {
@@ -75,21 +68,21 @@ public class ShoppingListServlet extends HttpServlet {
                     session.setAttribute("items", items);
                 }
             } else if (action.equals("add")) {
-                String fldItem = request.getParameter("fldItem");
-                if (fldItem != null && !fldItem.equals("")) {
+                String tfieldItem = request.getParameter("tfieldItem");
+                if (tfieldItem != null && !tfieldItem.equals("")) {
                     ArrayList<String> items = (ArrayList<String>) session.getAttribute("items");
                     if (items == null) // For safety.
                     {
                         items = new ArrayList<String>();
                     }
-                    items.add(fldItem);
+                    items.add(tfieldItem);
                     session.setAttribute("items", items);
                 }
             } else if (action.equals("delete")) {
-                String radSelect = request.getParameter("radSelect");
-                if (radSelect != null && !radSelect.equals("")) {
+                String btnSelect = request.getParameter("btnSelect");
+                if (btnSelect != null && !btnSelect.equals("")) {
                     try {
-                        int selected = Integer.parseInt(radSelect);
+                        int selected = Integer.parseInt(btnSelect);
                         ArrayList<String> items = (ArrayList<String>) session.getAttribute("items");
                         if (items == null) // For safety.
                         {
